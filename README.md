@@ -29,6 +29,29 @@ If you need username and password in your test, you can configure them in the ac
 
 Use them as ${USERNAME} and ${PASSWORD} in the test.
 
+# Webinject Config file
+You must set reporttype=nagios in the Webinject config file. Do not specify an outputdir, as this is set by the plugin.
+Example config file:
+```xml
+<baseurl>https://www.google.com</baseurl>
+<reporttype>nagios</reporttype>
+<globalhttplog>onfail</globalhttplog>
+```
+
+# Webinject Test File
+Write your test file as usual. Here is an example which used the configured baseurl:
+```xml
+<testcases repeat="1">
+  <case
+    id="1"
+    description1       = "Initial GET request to {BASEURL}/"
+    url                = "{BASEURL}/"
+    method             = "get"
+    verifyresponsecode = "200"
+    label              = "demo"
+  />
+</testcases>
+```
 ## Error: permission denied
 If you receive error in the check status:
 ```
