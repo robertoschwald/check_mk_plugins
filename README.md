@@ -33,19 +33,19 @@ Use them as ${USERNAME} and ${PASSWORD} in the test.
 You must set reporttype=nagios in the Webinject config file. Do not specify an outputdir, as this is set by the plugin.
 Example config file:
 ```xml
-<baseurl>https://www.google.com</baseurl>
+<baseurl>https://www.example.whatever</baseurl>
 <reporttype>nagios</reporttype>
 <globalhttplog>onfail</globalhttplog>
 ```
 
 # Webinject Test File
-Write your test file as usual.
+Write your test file as usual. Here, the test used the username and password configured in the active check parameters.
 ```xml
 <testcases repeat="1">
   <case
     id="1"
     description1       = "Initial GET request to {BASEURL}/"
-    url                = "{BASEURL}/"
+    url                = "{BASEURL}?username=${USERNAME}&password=${PASSWORD}"
     method             = "get"
     verifyresponsecode = "200"
     label              = "demo"
