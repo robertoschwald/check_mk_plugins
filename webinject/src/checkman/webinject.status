@@ -1,18 +1,17 @@
-title: Checks any amount of mysql status vars
+title: Checks a webservice using webinject
 agents: linux
-author: Bastian Kuhn <mail@bastian-kuhn.de>
+author: Robert Oschwald <robertoschwald@gmail.com>
 license: GPL
 distribution: none
 description:
- This checks works as subcheck for the check_mk Mysql Plugin.
- This plugin has to be configured in order for this check to work
- If you don't need all of the reported values, just set the disabled services.
+ This checks works as an active check running on a Check_MK server.
+ This plugin has to be configured in an active check rule in order for this check to work
 
- Configuration is via Wato
+ Configuration is via Wato plus upload of webinject config- and test files manually.
 
 item:
- The name of each mysql status value as shown in the mysql SHOW STATUS; query
+ There is one item per host.
 
 inventory:
- Automatic inventory is supported.
+ Automatic inventory is not supported, as this is an active check you need to configure.
 
