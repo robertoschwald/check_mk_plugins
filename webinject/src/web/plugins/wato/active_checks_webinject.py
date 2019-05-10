@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8; py-indent-offset: 4 -*-
 
-#
+# (c) 2019 Robert Oschwald <robertoschwald@gmail.com>
 # (c) 2013 Heinlein Support GmbH
 #          Robert Sander <r.sander@heinlein-support.de>
 #
@@ -22,14 +22,19 @@ group = "activechecks"
 register_rule(group,
     "active_checks:webinject",
     Tuple(
-        title = _("Check Web service with Webinject"),
-        help = _("Check the result of several Webinject tests. "
-                 "This check uses <tt>check_webinject</tt> from the bundled local Nagios plugins dir."),
+        title = _("Check webservice with Webinject"),
+        help = _("Check the result of a Webinject test plan. "),
         elements = [
-            TextAscii(title = _("configfile"), allow_empty = False,
-                     help = _('The name of the Webinject configuration XML file in ~sitename/etc/webinject/, e.g. myhost_config.xml')),
-            TextAscii(title = _("testfile"), allow_empty = False,
-                      help = _('The name of the Webinject test XML file in ~sitename/etc/webinject/, e.g. myhost_test.xml')),
+            TextAscii(
+                  title = _("Webinject config file name"),
+                  allow_empty = False,
+                  help = _('The name of the Webinject configuration XML file in ~sitename/etc/webinject/, e.g. myhost_config.xml')
+            ),
+            TextAscii(
+                  title = _("Webinject test file name"),
+                  allow_empty = False,
+                  help = _('The name of the Webinject test XML file in ~sitename/etc/webinject/, e.g. myhost_test.xml')
+            ),
         ]
     ),
     match = 'all')
