@@ -39,7 +39,7 @@ Example config file:
 ```
 
 # Webinject Test File
-Write your test file as usual. Here is an example which used the configured baseurl:
+Write your test file as usual.
 ```xml
 <testcases repeat="1">
   <case
