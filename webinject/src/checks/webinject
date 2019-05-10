@@ -18,28 +18,26 @@
 # Boston, MA 02110-1301 USA.
 
 def check_webinject_arguments(params):
+    configfile, testfile = params
     args = ""
 
-    if "configfile" in params:
-        args += "-c $USER4$/%s" % quote_shell_string(params["configfile"])
+    if "configfile":
+        # USER4 is not available here, and USER3 is relative, not absolute.
+        # So we use USER2 and go up to the home dir. Nasty.
+        args += "-c $USER2$/../../../../etc/webinject/%s" % quote_shell_string(configfile)
     else:
-        args += "-c $USER4$/etc/webinject/config.xml"
+        args += "-c not_configured_configfilename.xml"
 
-    if "testfile" in params:
-        args += " $USER4/etc/webinject/%s" % quote_shell_string(params["testfile"])
+    if "testfile":
+        args += " $USER2$/../../../../etc/webinject/%s" % quote_shell_string(testfile)
     else:
-        args += " $USER4$/etc/webinject/testfile.xml"
+        args += " not_configured_testfilename.xml"
 
     return args
 
-def check_webinject_data_desc(params):
-    if params[0].startswith("^"):
-        return params[0][1:]
-        return "WebInject %s" % params[0]
-
 active_check_info['webinject'] = {
-    "command_line": 'PERL_LWP_SSL_VERIFY_HOSTNAME=0 $USER2$/check_webinject -o $USER4$/etc/webinject/tmp/ $ARG1$',
+    "command_line": 'PERL_LWP_SSL_VERIFY_HOSTNAME=0 $USER2$/check_webinject -o $USER4$/var/log/ $ARG1$',
     "argument_function": check_webinject_arguments,
-    "service_description": check_webinject_data_desc,
+    "service_description": lambda params: "WebInject" if params[0] == '$HOSTNAME$' else "WebInject %s" % params[0],
     "has_perfdata": True,
 }
