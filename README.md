@@ -11,9 +11,9 @@ This plugin is an active plugin to be installed on Check_MK Servers based on the
 - Configure username / password as needed by your webinject tests.
 
 ## Installation
-1. Upload the mkp package into your Check_MK instance Extension Packages.  (coming soon)
-2. Install your webinject config- and test files into the site-user directory /etc/webinject of the appliance(s).
-   Note: You must copy the files to all Check_MK servers in a cluster manually!
+1. Upload the mkp package into your Check_MK instance Extension Packages.
+2. Install your webinject config- and test files into the site-user directory etc/webinject of the appliance(s).
+   Note: You must upload the files to all Check_MK servers in a cluster manually!
 3. Create a new webinject active check rule for your host. 
     - Specify the filenames of the config- and test XML files (without path)   
     - Optionally, define username and password (since 1.2)
