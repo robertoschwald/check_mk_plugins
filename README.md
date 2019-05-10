@@ -8,7 +8,7 @@ This plugin is an active plugin to be installed on Check_MK Servers based on the
 ## Enhancements
 - Packaged check_webinject Nagios check with the package (Version 1.94)
 - Reusable test files, as you can specify the config file name and the test file name. With this, you can use a common test file for many hosts, but webinject config files per host.
-- Configure arbitrary environment variables as needed by your webinject tests (e.g. username, password). This is handy if you use a common webinject test file for several hosts (coming soon)
+- Configure username / password as needed by your webinject tests.
 
 ## Installation
 1. Upload the mkp package into your Check_MK instance Extension Packages.  (coming soon)
