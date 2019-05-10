@@ -11,12 +11,12 @@ This plugin is an active plugin to be installed on Check_MK Servers based on the
  - Configure arbitrary environment variables needed by your webinject tests (e.g. username, password). This is handy if you use common webinject test files for several hosts.
 
 ## Installation
-1. Upload the mkp package into your Check_MK instance Extension Packages.  (comming soon)
+1. Upload the mkp package into your Check_MK instance Extension Packages.  (coming soon)
 2. Install your webinject config- and test files into the site-user directory /etc/webinject of the appliance(s).
    Note: You must copy the files to all Check_MK servers in a cluster manually!
 3. Create a new webinject active check rule for your host. 
     - Specify the filenames of the config- and test XML files (without path)   
-    - Optionally, define as many environment variables as you need (comming soon)
+    - Optionally, define as many environment variables as you need (coming soon)
 
 ## Webinject config files
 Do not specify a logfile location in the webinject config file!
