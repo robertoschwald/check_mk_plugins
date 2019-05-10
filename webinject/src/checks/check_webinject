@@ -18,7 +18,7 @@
 # Boston, MA 02110-1301 USA.
 
 def check_webinject_arguments(params):
-    configfile, testfile = params
+    configfile, testfile, settings = params
     args = ""
 
     if "configfile":
@@ -28,10 +28,15 @@ def check_webinject_arguments(params):
     else:
         args += "-c not_configured_configfilename.xml"
 
+    for setting in ['username', 'password']:
+        if setting in settings:
+            args += " -s \"%s=%s\"" % (setting.upper(), settings[setting])
+
     if "testfile":
         args += " $USER2$/../../../../etc/webinject/%s" % quote_shell_string(testfile)
     else:
         args += " not_configured_testfilename.xml"
+
 
     return args
 

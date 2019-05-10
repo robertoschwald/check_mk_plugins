@@ -35,6 +35,23 @@ register_rule(group,
                   allow_empty = False,
                   help = _('The name of the Webinject test XML file in ~sitename/etc/webinject/, e.g. myhost_test.xml')
             ),
+            Dictionary(
+                title = ("Optional parameters"),
+                elements = [
+                    ( "username",
+                      TextAscii(
+                          title = _("Username"),
+                          help = _("The username you want to login as. Is forwarded as USERNAME param to the test."),
+                          size = 30)
+                      ),
+                    ( "password",
+                      Password(
+                          title = _("Password"),
+                          help = _("The password you want to use for that user. Is forwarded as PASSWORD param to the test."),
+                          size = 30)
+                      ),
+                ]
+            )
         ]
     ),
     match = 'all')

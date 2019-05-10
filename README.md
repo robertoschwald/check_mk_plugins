@@ -16,7 +16,7 @@ This plugin is an active plugin to be installed on Check_MK Servers based on the
    Note: You must copy the files to all Check_MK servers in a cluster manually!
 3. Create a new webinject active check rule for your host. 
     - Specify the filenames of the config- and test XML files (without path)   
-    - Optionally, define as many environment variables as you need (coming soon)
+    - Optionally, define username and password (since 1.2)
 
 ## Webinject config files
 Do not specify a logfile location in the webinject config file!
@@ -24,8 +24,13 @@ Do not specify a logfile location in the webinject config file!
 ## check_webinject
 This file is based on webinject 1.94 currently.
 
+## Username and Password
+If you need username and password in your test, you can configure them in the active check rule.
+
+Use them as ${USERNAME} and ${PASSWORD} in the test.
+
 ## Error: permission denied
-If you use the Check_MK virtual appliance and receive error
+If you receive error in the check status:
 ```
 sh: 1: /omd/sites/<your_site>/local/lib/nagios/plugins/check_webinject: Permission denied
 ```
