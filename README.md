@@ -18,6 +18,8 @@ This plugin is an active plugin to be installed on Check_MK Servers based on the
     - Specify the filenames of the config- and test XML files (without path)   
     - Optionally, define as many environment variables as you need (comming soon)
 
-# Webinject config files
+## Webinject config files
 Do not specify a logfile location in the webinject config file!
 
+## check_webinject
+This file is based on webinject 1.94 currently.
