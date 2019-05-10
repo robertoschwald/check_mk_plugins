@@ -16,7 +16,7 @@ This plugin is an active plugin to be installed on Check_MK Servers based on the
    Note: You must copy the files to all Check_MK servers in a cluster manually!
 3. Create a new webinject active check rule for your host. 
     - Specify the filenames of the config- and test XML files (without path)   
-    - Define as many environment variables as you need (comming soon)
+    - Optionally, define as many environment variables as you need (comming soon)
 
 # Webinject config files
 Do not specify a logfile location in the webinject config file!
