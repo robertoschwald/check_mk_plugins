@@ -1,0 +1,11 @@
+{'author': u'Robert Oschwald',
+ 'description': u'Webinject Checks based on https://github.com/HeinleinSupport/check_mk_extensions/tree/master/webinject',
+ 'download_url': 'https://github.com/robertoschwald/check_mk-treasures/',
+ 'files': {'checks': ['check_webinject'],
+           'web': ['plugins/wato/as400.py']},
+ 'name': 'WebInject',
+ 'num_files': 6,
+ 'title': u'Webinject Checks',
+ 'version': '1.2',
+ 'version.min_required': '1.2.8',
+ 'version.packaged': '1.5.0p3'}
