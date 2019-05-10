@@ -35,7 +35,8 @@ use Time::HiRes 'time', 'sleep';
 use Getopt::Long;
 use Crypt::SSLeay;              # for SSL/HTTPS (you may comment this out if you don't need it)
 use XML::Parser;                # for web services verification (you may comment this out if aren't doing XML verifications for web services)
-use Error qw(:try);             # for web services verification (you may comment this out if aren't doing XML verifications for web services)
+# use Error qw(:try);           # for web services verification (you may comment this out if aren't doing XML verifications for web services)
+eval "use Error qw(:try)";      # Check_MK Docker 1.5.0 doesn't seem to have Error module available (Appliance does). So load conditionally.
 use Data::Dumper;               # dump hashes for debugging
 use File::Temp qw/ tempfile /;  # create temp files
 use File::Basename;
