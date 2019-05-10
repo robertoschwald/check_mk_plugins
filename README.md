@@ -23,3 +23,15 @@ Do not specify a logfile location in the webinject config file!
 
 ## check_webinject
 This file is based on webinject 1.94 currently.
+
+## Error: permission denied
+If you use the Check_MK virtual appliance and receive error
+```
+sh: 1: /omd/sites/<your_site>/local/lib/nagios/plugins/check_webinject: Permission denied
+```
+you might be hit by Check_MK bug CMK-320.
+
+In this case, you must SSH login to the appliance as the site user and change the permission yourself until this gets fixed by the vendor:
+```
+chmod 755 local/lib/icinga/plugins/check_webinject
+```
