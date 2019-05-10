@@ -2,7 +2,7 @@
 
 Plugins for Check_MK either based on existing plugins, or newly written.
 
-# webinject
+# Webinject Active Check
 This plugin is an active plugin to be installed on Check_MK Servers based on the webinject plugin of https://github.com/HeinleinSupport/check_mk_extensions.  
 
 ## Enhancements
