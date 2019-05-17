@@ -3,7 +3,7 @@
 Plugins for Check_MK either based on existing plugins, or newly written.
 
 # Cisco Small Business Switch Fan Check
-cisco_sb_fans is a WIP plugin to monitor fan status of small business switches. Stay tuned.
+cisco_sb_fans is a WIP plugin to monitor fan status of Cisco Small Business switches. Stay tuned.
 
 # Webinject Active Check
 This plugin is an active plugin to be installed on Check_MK Servers based on the webinject plugin of https://github.com/HeinleinSupport/check_mk_extensions.  
