@@ -7,6 +7,9 @@ cisco_sb_fans is an extension to monitor fan status of Cisco Small Business swit
 
 You must ensure OID .1.3.6.1.4.1.9.6.1.101.83 is visible by your Check_MK server(s) in the switch config (SNMP View)
 
+# Cisco Small Business Switch Temperature Check
+Coming soon.
+
 # Webinject Active Check
 This plugin is an active plugin to be installed on Check_MK Servers based on the webinject plugin of https://github.com/HeinleinSupport/check_mk_extensions.  
 
