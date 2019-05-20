@@ -2,7 +2,7 @@
 # -*- encoding: utf-8; py-indent-offset: 4 -*-
 
 # Check for Cisco Small Business Switch FANs.
-# We probe sysDescr.0 (default, probably already cached)
+# We probe sysDescr.0 (default, probably already cached) for "switch"
 # and CISCOSB-Physicaldescription-MIB::rlPhdUnitGenParamManufacturer.1 for "cisco",
 # as this MIB is available on SB Switches (like SG300 Series), only.
 # The fans itself are on the following OIDs:
