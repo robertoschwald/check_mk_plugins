@@ -22,7 +22,7 @@ def check_webinject_arguments(params):
     args = ""
 
     if "configfile":
-        # USER4 is not available here, and USER3 is relative, not absolute.
+        # USER4 is not available here.
         # So we use USER2 and go up to the home dir. Nasty.
         args += "-c $USER2$/../../../../etc/webinject/%s" % quote_shell_string(configfile)
     else:
