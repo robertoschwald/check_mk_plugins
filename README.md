@@ -65,7 +65,7 @@ If you receive error in the check status:
 ```
 sh: 1: /omd/sites/<your_site>/local/lib/nagios/plugins/check_webinject: Permission denied
 ```
-you might be hit by Check_MK bug CMK-320.
+you might be hit by Check_MK bug [CMK-320](https://mathias-kettner.de/bugs.php?bug_id=CMK-320)
 
 In this case, you must SSH login to the appliance as the site user and change the permission yourself until this gets fixed by the vendor:
 ```
