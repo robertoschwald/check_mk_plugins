@@ -14,7 +14,7 @@ Coming soon.
 This plugin is an active plugin to be installed on Check_MK Servers based on the webinject plugin of https://github.com/HeinleinSupport/check_mk_extensions.  
 
 ## Enhancements
-- Packaged check_webinject Nagios check with the package (Version 1.94) which also works in the Check_MK Docker images. The check_webinject nagios test provided by newer Check_MK installations currently does not work in the Docker Check_MK images, as Errors.pm is library is missing in the Docker image. Issue is reported already.
+- Packaged check_webinject Nagios check with the package (Version 1.94) which also works in the Check_MK Docker images. The check_webinject nagios test provided by newer Check_MK installations currently does not work in the Docker Check_MK images, as Errors.pm library is missing in the Docker image. Issue is reported already.
 - Reusable test files, as you can specify the config file name and the test file name. With this, you can use a common test file for many hosts, but webinject config files per host.
 - Configure username / password as needed by your webinject tests.
 
