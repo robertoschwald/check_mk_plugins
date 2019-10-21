@@ -14,14 +14,14 @@ Coming soon.
 This plugin is an active plugin to be installed on Check_MK Servers based on the webinject plugin of https://github.com/HeinleinSupport/check_mk_extensions.  
 
 ## Enhancements
-- Packaged check_webinject Nagios check with the package (Version 1.94) which also works in the Check_MK Docker images. The check_webinject nagios test provided by newer Check_MK installations currently does not work in the Docker Check_MK images, as Errors.pm library is missing in the Docker image. Issue is reported already.
+- Packaged check_webinject Nagios check with the package (Version 1.94) which also works in the Check_MK Docker images. The check_webinject nagios test provided by newer Check_MK installations currently does not work in the Docker Check_MK images, as Errors.pm library is missing in the Docker image (checked up to 1.6.0p5). Issue is reported to vendor already.
 - Reusable test files, as you can specify the config file name and the test file name. With this, you can use a common test file for many hosts, but webinject config files per host.
 - Configure username / password as needed by your webinject tests.
 
 ## Installation
 1. Upload the mkp package into your Check_MK instance Extension Packages.
 2. Install your webinject config- and test files into the site-user directory etc/webinject of the appliance(s).
-   Note: You must upload the files to all Check_MK servers in a cluster manually!
+   Note: You must upload the files to all Check_MK servers in a cluster / ditributed monitoring manually!
 3. Create a new webinject active check rule for your host. 
     - Specify the filenames of the config- and test XML files (without path)   
     - Optionally, define username and password (since 1.2)
@@ -30,7 +30,7 @@ This plugin is an active plugin to be installed on Check_MK Servers based on the
 Do not specify a logfile location in the webinject config file!
 
 ## check_webinject
-This file is based on webinject 1.94 currently.
+This file is based on webinject 1.94 currently. Has workaround for missing Errors.pm library.
 
 ## Username and Password
 If you need username and password in your test, you can configure them in the active check rule.
