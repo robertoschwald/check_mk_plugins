@@ -19,6 +19,9 @@ This check is based on netgear_temp, but with changed OIDs, as the NETGEAR-BOXSE
 
 The fans are auto-detected.
 
+## Installation
+Upload the [netgear_smpro_fans-1.0.0.mkp](https://github.com/robertoschwald/check_mk_plugins/releases/download/smpro_fans_1.0.0/netgear_smpro_fans-1.0.0.mkp) extension into your Check_MK instance Extension Packages.
+
 # Webinject Active Check
 This plugin is an active plugin to be installed on Check_MK Servers based on the webinject plugin of https://github.com/HeinleinSupport/check_mk_extensions.  
 
