@@ -13,6 +13,12 @@ Upload the [cisco_sb_fans-1.0.1.mkp](https://github.com/robertoschwald/check_mk_
 # Cisco Small Business Switch Temperature Check
 Coming soon.
 
+# Netgear Smart Manage Pro Series Switch Fan Check
+netgear_smpro_temp is an extension to monitor fan status of Netgear NG700 Smart Managed Pro NG700 Series switches like the XS716T.
+This check is based on netgear_temp, but with changed OIDs, as the NETGEAR-BOXSERVICES-PRIVATE-MIB is different to the FASTPATH-BOXSERVICES-PRIVATE-MIB.
+
+The fans are auto-detected.
+
 # Webinject Active Check
 This plugin is an active plugin to be installed on Check_MK Servers based on the webinject plugin of https://github.com/HeinleinSupport/check_mk_extensions.  
 
@@ -73,4 +79,10 @@ you might be hit by Check_MK bug [CMK-320](https://mathias-kettner.de/bugs.php?b
 In this case, you must SSH login to the appliance as the site user and change the permission yourself until this gets fixed by the vendor:
 ```
 chmod 755 local/lib/icinga/plugins/check_webinject
+```
+
+# Building
+To build an extension package, call
+```
+./mkp_packer pack <plugin-dir>
 ```

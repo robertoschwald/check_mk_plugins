@@ -1,0 +1,11 @@
+{'author': u'Robert Oschwald <robertoschwald@gmail.com>',
+ 'description': u'This checks monitors fans of Netgear NG700 Smart Managed Pro Series switches which support the NETGEAR-BOXSERVICES-PRIVATE MIB (like the XS7xxT series)',
+ 'download_url': 'https://github.com/robertoschwald/check_mk_plugins/blob/master/netgear_smpro_fans',
+ 'files': {'checkman': ['netgear_smpro_fans'],
+           'checks': ['netgear_smpro_fans']},
+ 'name': 'netgear_smpro_fans',
+ 'num_files': 2,
+ 'title': u'Check FAN health status on Netgear NG700 Smart Managed Pro Series switches',
+ 'version': '1.0.0',
+ 'version.min_required': '1.2.8',
+ 'version.packaged': '1.5.0p15'}
