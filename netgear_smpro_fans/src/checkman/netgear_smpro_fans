@@ -2,15 +2,15 @@ title: Netgear Smart Managed Pro Switches: Fans
 agents: snmp
 catalog: hw/network/netgear
 license: GPL
-distribution: check_mk
+distribution: none
 description:
- This checks monitors fans of Netgear NG700 Smart Managed Pro Series switches
+ This checks monitors temperature sensors of Netgear NG700 Smart Managed Pro Series switches
  which support the NETGEAR-BOXSERVICES-PRIVATE MIB (like the XS7xxT series)
 
  No default levels are set. The device sends the state itself.
 
 item:
- The fan identifier.
+ The sensor identifier.
 
 inventory:
- One service is created for each fan.
+ One service is created for each sensor.
