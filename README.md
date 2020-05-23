@@ -2,7 +2,31 @@
 
 Plugins for Check_MK either based on existing plugins, or newly written.
 
+# Table Of Contents
+[TOC levels=1-5]: #
+
+# Table of Contents
+- [Check_MK Plugins](#check_mk-plugins)
+- [Table Of Contents](#table-of-contents)
+- [Cisco Small Business Switch Fan Check](#cisco-small-business-switch-fan-check)
+  - [Installation](#installation)
+- [Netgear Smart Manage Pro Series Switch Fan Check](#netgear-smart-manage-pro-series-switch-fan-check)
+  - [Installation](#installation-1)
+- [Netgear Smart Manage Pro Series Switch Temperature Sensors Check](#netgear-smart-manage-pro-series-switch-temperature-sensors-check)
+  - [Installation](#installation-2)
+- [Webinject Active Check](#webinject-active-check)
+  - [Enhancements](#enhancements)
+  - [Installation](#installation-3)
+  - [Webinject config files](#webinject-config-files)
+  - [check_webinject](#check_webinject)
+  - [Username and Password](#username-and-password)
+  - [Webinject Config file](#webinject-config-file)
+  - [Webinject Test File](#webinject-test-file)
+  - [Error: permission denied](#error-permission-denied)
+- [Building](#building)
+
 # Cisco Small Business Switch Fan Check
+
 cisco_sb_fans is an extension to monitor fan status of Cisco Small Business switches like the SG300 series using SNMP.
 
 You must ensure OID .1.3.6.1.4.1.9.6.1.101.83 is visible by your Check_MK server(s) in the switch config (SNMP View)
@@ -61,7 +85,7 @@ If you need username and password in your test, you can configure them in the ac
 
 Use them as ${USERNAME} and ${PASSWORD} in the test.
 
-# Webinject Config file
+## Webinject Config file
 You must set reporttype=nagios in the Webinject config file. Do not specify an outputdir, as this is set by the plugin.
 Example config file:
 ```xml
@@ -70,7 +94,7 @@ Example config file:
 <globalhttplog>onfail</globalhttplog>
 ```
 
-# Webinject Test File
+## Webinject Test File
 Write your test file as usual. Here, the test used the username and password configured in the active check parameters.
 ```xml
 <testcases repeat="1">
