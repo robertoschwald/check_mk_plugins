@@ -10,17 +10,29 @@ You must ensure OID .1.3.6.1.4.1.9.6.1.101.83 is visible by your Check_MK server
 ## Installation
 Upload the [cisco_sb_fans-1.0.1.mkp](https://github.com/robertoschwald/check_mk_plugins/releases/download/sb_fan_1.0.1/cisco_sb_fans-1.0.1.mkp) extension into your Check_MK instance Extension Packages.
 
-# Cisco Small Business Switch Temperature Check
-Coming soon.
+
 
 # Netgear Smart Manage Pro Series Switch Fan Check
+netgear_smpro_fans is an extension to monitor fan status of Netgear NG700 Smart Managed Pro NG700 Series switches like the XS716T.
+This check is based on netgear_fans, but with changed OIDs, as the NETGEAR-BOXSERVICES-PRIVATE-MIB is different to the FASTPATH-BOXSERVICES-PRIVATE-MIB.
+
+The fans are auto-detected.
+
+## Installation
+Upload the [netgear_smpro_fans-1.0.0.mkp](https://github.com/robertoschwald/check_mk_plugins/releases/download/smpro_fans_1.0.0/netgear_smpro_fans-1.0.0.mkp) extension into your Check_MK instance Extension Packages.
+
+
+
+# Netgear Smart Manage Pro Series Switch Temperature Sensors Check
 netgear_smpro_temp is an extension to monitor fan status of Netgear NG700 Smart Managed Pro NG700 Series switches like the XS716T.
 This check is based on netgear_temp, but with changed OIDs, as the NETGEAR-BOXSERVICES-PRIVATE-MIB is different to the FASTPATH-BOXSERVICES-PRIVATE-MIB.
 
 The fans are auto-detected.
 
 ## Installation
-Upload the [netgear_smpro_fans-1.0.0.mkp](https://github.com/robertoschwald/check_mk_plugins/releases/download/smpro_fans_1.0.0/netgear_smpro_fans-1.0.0.mkp) extension into your Check_MK instance Extension Packages.
+Upload the [netgear_smpro_temp-1.0.0.mkp](https://github.com/robertoschwald/check_mk_plugins/releases/download/smpro_fans_1.0.0/netgear_smpro_temp-1.0.0.mkp) extension into your Check_MK instance Extension Packages.
+
+
 
 # Webinject Active Check
 This plugin is an active plugin to be installed on Check_MK Servers based on the webinject plugin of https://github.com/HeinleinSupport/check_mk_extensions.  
@@ -83,6 +95,7 @@ In this case, you must SSH login to the appliance as the site user and change th
 ```
 chmod 755 local/lib/icinga/plugins/check_webinject
 ```
+
 
 # Building
 To build an extension package, call
