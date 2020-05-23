@@ -30,7 +30,7 @@ This check is based on netgear_temp, but with changed OIDs, as the NETGEAR-BOXSE
 The fans are auto-detected.
 
 ## Installation
-Upload the [netgear_smpro_temp-1.0.0.mkp](https://github.com/robertoschwald/check_mk_plugins/releases/download/smpro_fans_1.0.0/netgear_smpro_temp-1.0.0.mkp) extension into your Check_MK instance Extension Packages.
+Upload the [netgear_smpro_temp-1.0.0.mkp](https://github.com/robertoschwald/check_mk_plugins/releases/download/smpro_temp_1.0.0/netgear_smpro_temp-1.0.0.mkp) extension into your Check_MK instance Extension Packages.
 
 
 
