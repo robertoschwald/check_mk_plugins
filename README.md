@@ -2,12 +2,11 @@
 
 Plugins for Check_MK either based on existing plugins, or newly written.
 
-# Table Of Contents
+
 [TOC levels=1-5]: #
 
 # Table of Contents
 - [Check_MK Plugins](#check_mk-plugins)
-- [Table Of Contents](#table-of-contents)
 - [Cisco Small Business Switch Fan Check](#cisco-small-business-switch-fan-check)
   - [Installation](#installation)
 - [Netgear Smart Manage Pro Series Switch Fan Check](#netgear-smart-manage-pro-series-switch-fan-check)
