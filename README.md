@@ -7,7 +7,8 @@ cisco_sb_fans is an extension to monitor fan status of Cisco Small Business swit
 
 You must ensure OID .1.3.6.1.4.1.9.6.1.101.83 is visible by your Check_MK server(s) in the switch config (SNMP View)
 
-Install the current [cisco_sb_fans-1.0.1.mkp](https://github.com/robertoschwald/check_mk_plugins/releases/download/sb_fan_1.0.1/cisco_sb_fans-1.0.1.mkp) extension in your Check_MK instance to activate.
+## Installation
+Upload the [cisco_sb_fans-1.0.1.mkp](https://github.com/robertoschwald/check_mk_plugins/releases/download/sb_fan_1.0.1/cisco_sb_fans-1.0.1.mkp) extension into your Check_MK instance Extension Packages.
 
 # Cisco Small Business Switch Temperature Check
 Coming soon.
@@ -21,7 +22,7 @@ This plugin is an active plugin to be installed on Check_MK Servers based on the
 - Configure username / password as needed by your webinject tests.
 
 ## Installation
-1. Upload the mkp package into your Check_MK instance Extension Packages.
+1. Upload the [check_webinject-1.2.1.mkp](https://github.com/robertoschwald/check_mk_plugins/releases/download/1.2.1/check_webinject-1.2.1.mkp) extension into your Check_MK instance Extension Packages.
 2. Install your webinject config- and test files into the site-user directory etc/webinject of the appliance(s).
    Note: You must upload the files to all Check_MK servers in a cluster / ditributed monitoring manually!
 3. Create a new webinject active check rule for your host. 
