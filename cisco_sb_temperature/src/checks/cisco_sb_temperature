@@ -1,0 +1,369 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+# Copyright (C) 2019 tribe29 GmbH - License: GNU General Public License v2
+# This file is part of Checkmk (https://checkmk.com). It is subject to the terms and
+# conditions defined in the file COPYING, which is part of this source code package.
+#
+# This file is derived from cisco_temp_sensor (c) robertoschwald
+
+# OID for environment entries
+# .1.3.6.1.4.1.9.6.1.101.83
+
+# Temp Sensors
+# .1.3.6.1.4.1.9.6.1.101.83.2.1.1.1.1.68420481 celsius(8) (entPhySensorType)
+# .1.3.6.1.4.1.9.6.1.101.83.2.1.1.1.1.68420482 celsius(8) (entPhySensorType)
+# .1.3.6.1.4.1.9.6.1.101.83.2.1.1.1.2.68420481 units(9)   (entPhySensorScale)
+# .1.3.6.1.4.1.9.6.1.101.83.2.1.1.1.2.68420482 units(9)   (entPhySensorScale)
+# .1.3.6.1.4.1.9.6.1.101.83.2.1.1.1.3.68420481 1          (entPhySensorPrecision)
+# .1.3.6.1.4.1.9.6.1.101.83.2.1.1.1.3.68420482 1          (entPhySensorPrecision)
+# .1.3.6.1.4.1.9.6.1.101.83.2.1.1.1.4.68420481 38         (entPhySensorValue)
+# .1.3.6.1.4.1.9.6.1.101.83.2.1.1.1.4.68420482 36         (entPhySensorValue)
+# .1.3.6.1.4.1.9.6.1.101.83.2.1.1.1.5.68420481 ok(1)      (entPhySensorOperStatus)
+# .1.3.6.1.4.1.9.6.1.101.83.2.1.1.1.5.68420482 ok(1)      (entPhySensorOperStatus)
+
+# [...]
+# Types of sensors:
+#        other(1):        a measure other than those listed below
+#        unknown(2):      unknown measurement, or arbitrary, relative numbers
+#        voltsAC(3):      electric potential
+#        voltsDC(4):      electric potential
+#        amperes(5):      electric current
+#        watts(6):        power
+#        hertz(7):        frequency
+#        celsius(8):      temperature
+#        percentRH(9):    percent relative humidity
+#        rpm(10):         shaft revolutions per minute
+#        cmm(11),:        cubic meters per minute (airflow)
+#        truthvalue(12):  value takes { true(1), false(2) }
+#        specialEnum(13): value takes user defined enumerated values
+#        dBm(14):         dB relative to 1mW of power
+
+
+# Temp sensor thresholds
+# .1.3.6.1.4.1.9.6.1.101.83.3.1.1.68420481 0 (rlEnvPhySensorMinValue)
+# .1.3.6.1.4.1.9.6.1.101.83.3.1.1.68420482 0 (rlEnvPhySensorMinValue)
+# .1.3.6.1.4.1.9.6.1.101.83.3.1.2.68420481 90 (rlEnvPhySensorMaxValue)
+# .1.3.6.1.4.1.9.6.1.101.83.3.1.2.68420482 90 (rlEnvPhySensorMaxValue)
+# .1.3.6.1.4.1.9.6.1.101.83.3.1.3.68420481 83 (rlEnvPhySensorTestValue)
+# .1.3.6.1.4.1.9.6.1.101.83.3.1.3.68420482 83 (rlEnvPhySensorTestValue)
+
+# State of the sensor itself
+#        ok(1) means the agent can read the sensor
+#        value.
+#
+#        unavailable(2) means that the agent presently
+#        can not report the sensor value.
+#
+#        nonoperational(3) means that the agent believes
+#        the sensor is broken.  The sensor could have a
+#        hard failure (disconnected wire), or a soft failure
+#        such as out-of-range, jittery, or wildly fluctuating
+#        readings.
+
+# Sensor Type 8 = celsius.
+
+# OID: ifAdminStatus
+cisco_sb_temp_admin_state_map = {
+    '1': "up",
+    '2': "down",
+    '3': "testing",
+}
+
+
+def parse_cisco_sb_temp(info):
+    # CISCO-ENTITY-SENSOR-MIB entSensorType
+    cisco_sensor_types = {
+        "1": "other",
+        "2": "unknown",
+        "3": "voltsAC",
+        "4": "voltsDC",
+        "5": "amperes",
+        "6": "watts",
+        "7": "hertz",
+        "8": "celsius",
+        "9": "parentRH",
+        "10": "rpm",
+        "11": "cmm",
+        "12": "truthvalue",
+        "13": "specialEnum",
+        "14": "dBm",
+    }
+
+    # CISCO-ENTITY-SENSOR-MIB::entSensorScale
+    cisco_entity_exponents = {
+        "1": -24,  #     1:yocto
+        "2": -21,  #     2:zepto
+        "3": -18,  #     3:atto
+        "4": -15,  #     4:femto
+        "5": -12,  #     5:pico
+        "6": -9,  #     6:nano
+        "7": -6,  #     7:micro
+        "8": -3,  #     8:milli
+        "9": 0,  #     9:units
+        "10": 3,  #     10:kilo
+        "11": 6,  #     11:mega
+        "12": 9,  #     12:giga
+        "13": 12,  #     13:tera
+        "14": 18,  #     14:exa
+        "15": 15,  #     15:peta
+        "16": 21,  #     16:zetta
+        "17": 24,  #     17:yotta
+    }
+
+    # CISCO-ENTITY-SENSOR-MIB::entSensorStatus
+    map_states = {
+        "1": (0, "OK"),
+        "2": (3, "unavailable"),
+        "3": (3, "non-operational"),
+    }
+
+    # CISCO-ENVMON-MIB
+    map_envmon_states = {
+        '1': (0, "normal"),
+        '2': (1, "warning"),
+        '3': (2, "critical"),
+        '4': (2, "shutdown"),
+        '5': (3, "not present"),
+        '6': (2, "not functioning"),
+    }
+
+    # description_info = [...,
+    #                     [u'25955', u'Ethernet1/9(Rx-dBm)'],
+    #                     [u'25956', u'Ethernet1/9(Tx-dBm)'],
+    #                     ...]
+    # state_info = [...,
+    #               [u'25955', u'14', u'8', u'0', u'-3487', u'1'],
+    #               [u'25956', u'14', u'8', u'0', u'-2525', u'1'],
+    #               ...]
+    # admin_states = [['Ethernet1/9', '1'], ...]
+    #
+
+    # IMPORTANT HINT: Temperature sensors uniquely identified via the indices in
+    # description_info and linked to data in state_info are different sensors than
+    # the ones contained in the perfstuff data structure. Sensors contained in the
+    # perfstuff data structure contain only one threshold value for temperature.
+    #
+    # description_info = [...,
+    #                     [u'1008', u'Switch 1 - WS-C2960X-24PD-L - Sensor 0'],
+    #                     ...,
+    #                     [u'2008', u'Switch 2 - WS-C2960X-24PD-L - Sensor 0'],
+    #                     ...]
+    # perfstuff = [...,
+    #              [u'1008', u'SW#1, Sensor#1, GREEN', u'36', u'68', u'1'],
+    #              [u'2008', u'SW#2, Sensor#1, GREEN', u'37', u'68', u'1'],
+    #              ...]
+
+    description_info, state_info, levels_info, perfstuff, admin_states = info
+
+    # Create dict of sensor descriptions
+    descriptions = dict(description_info)
+
+    # Map admin state of Ethernet ports to sensor_ids of corresponding ethernet port sensors.
+    # E.g. Ethernet1/9 -> Ethernet1/9(Rx-dBm), Ethernet1/9(Tx-dBm)
+    # In case the description has been modified in the switch device this
+    # mapping will not be successful. The description contains an ID instead of
+    # a human readable string to identify the sensors then. The sensors cannot
+    # be looked up in the description_info then.
+    admin_states_dict = {}
+    for if_name, admin_state in admin_states:
+        for sensor_id, descr in descriptions.iteritems():
+            if descr.startswith(if_name):
+                admin_states_dict[sensor_id] = cisco_sb_temp_admin_state_map.get(admin_state)
+
+    # Create dict with thresholds
+    thresholds = {}
+    for sensor_id, sensortype_id, scalecode, magnitude, value, sensorstate in state_info:
+        thresholds.setdefault(sensor_id, [])
+
+    for endoid, level in levels_info:
+        # endoid is e.g. 21549.9 or 21459.10
+        sensor_id, _subid = endoid.split('.')
+        thresholds.setdefault(sensor_id, []).append(level)
+
+    # Parse OIDs described by CISCO-ENTITY-SENSOR-MIB
+    entity_parsed = {}
+    for sensor_id, sensortype_id, scalecode, magnitude, value, sensorstate in state_info:
+        sensortype = cisco_sensor_types.get(sensortype_id)
+        if sensortype not in ("dBm", "celsius"):
+            continue
+
+        if sensor_id in descriptions:
+            descr = descriptions[sensor_id]
+        else:
+            descr = sensor_id
+
+        if not descr:
+            continue
+
+        entity_parsed.setdefault(sensortype_id, {})
+
+        sensor_attrs = {
+            'descr': descr,
+            'raw_dev_state': sensorstate,  # used in discovery function
+            'dev_state': map_states.get(sensorstate, (3, 'unknown[%s]' % sensorstate)),
+            'admin_state': admin_states_dict.get(sensor_id),
+        }
+
+        if sensorstate == '1':
+            scale = 10**int(magnitude)
+            scale *= 10**(-1 * cisco_entity_exponents[scalecode])
+            sensor_attrs['reading'] = float(value) / scale
+            # All sensors have 4 threshold values.
+            # Map thresholds [crit_upper, warn_upper, crit_lower, warn_lower] to
+            # dev_levels (warn_upper, crit_upper, warn_lower, crit_lower) conform
+            # with check_levels() signature.
+            # e.g. [u'75000', u'70000', u'-5000', u'0'] -> (70000, 75000, 0, -5000)
+            # For temperature sensors only the upper levels are considered.
+            # e.g. [u'75000', u'70000, u'-5000', u'0'] -> (70000, 75000)
+            # In case devices do no validation when thresholds are set this could result
+            # in threshold values in a wrong order. To keep the behaviour consistent
+            # to temperature sensors the device levels are ordered accoringly.
+            if sensortype == "dBm" and len(thresholds[sensor_id]) == 4:
+                unsorted_thresholds = thresholds[sensor_id][0:4]
+                converted_thresholds = [float(t) / scale for t in unsorted_thresholds]
+                #list(map(lambda x: x / scale, map(float, unsorted_thresholds)))  # pylint: disable=cell-var-from-loop
+                sorted_thresholds = sorted(converted_thresholds, key=float)
+                opt_crit_upper, opt_warn_upper, opt_crit_lower, opt_warn_lower = sorted_thresholds[
+                                                                                     3], sorted_thresholds[2], sorted_thresholds[0], sorted_thresholds[1]
+                dev_levels = (opt_warn_upper, opt_crit_upper, opt_warn_lower, opt_crit_lower)
+            elif sensortype == "celsius" and len(thresholds[sensor_id]) == 4:
+                temp_crit_upper_raw, temp_warn_upper_raw = thresholds[sensor_id][0:2]
+                # Some devices deliver these values in the wrong order. In case the devices
+                # do no validation when thresholds are set this could result in values in a
+                # wrong oder as well. Device levels are assigned accoring to their size.
+                dev_levels = (
+                    min(float(temp_warn_upper_raw) / scale,
+                        float(temp_crit_upper_raw) / scale),
+                    max(float(temp_warn_upper_raw) / scale,
+                        float(temp_crit_upper_raw) / scale),
+                )
+            else:
+                dev_levels = None
+            sensor_attrs['dev_levels'] = dev_levels
+            entity_parsed[sensortype_id].setdefault(sensor_id, sensor_attrs)
+
+    found_temp_sensors = entity_parsed.get('8', {})
+    parsed = {}
+    temp_sensors = parsed.setdefault('8', {})
+    for sensor_id, statustext, temp, max_temp, state in perfstuff:
+        if sensor_id in descriptions and sensor_id in found_temp_sensors:
+            # if this sensor is already in the dictionary, ensure we use the same name
+            item = descriptions[sensor_id]
+            prev_description = cisco_sensor_item(statustext, sensor_id)
+            # also register the name we would have used up to 1.2.8b4, so we can give
+            # the user a proper info message.
+            # It's the little things that show you care
+            temp_sensors[prev_description] = {"obsolete": True}
+        else:
+            item = cisco_sensor_item(statustext, sensor_id)
+
+        temp_sensor_attrs = {
+            'raw_dev_state': state,
+            'dev_state': map_envmon_states.get(state, (3, 'unknown[%s]' % state)),
+        }
+
+        try:
+            temp_sensor_attrs['reading'] = int(temp)
+            if max_temp and int(max_temp):
+                temp_sensor_attrs['dev_levels'] = (int(max_temp), int(max_temp))
+            else:
+                temp_sensor_attrs['dev_levels'] = None
+        except Exception:
+            temp_sensor_attrs['dev_state'] = (3, 'sensor defect')
+
+        temp_sensors.setdefault(item, temp_sensor_attrs)
+
+    for sensor_type, sensors in entity_parsed.iteritems():
+        for sensor_attrs in sensors.values():
+            # Do not overwrite found sensors from perfstuff loop
+            parsed.setdefault(sensor_type, {}).setdefault(sensor_attrs['descr'], sensor_attrs)
+
+    return parsed
+
+
+#   .--temperature---------------------------------------------------------.
+#   |      _                                      _                        |
+#   |     | |_ ___ _ __ ___  _ __   ___ _ __ __ _| |_ _   _ _ __ ___       |
+#   |     | __/ _ \ '_ ` _ \| '_ \ / _ \ '__/ _` | __| | | | '__/ _ \      |
+#   |     | ||  __/ | | | | | |_) |  __/ | | (_| | |_| |_| | | |  __/      |
+#   |      \__\___|_| |_| |_| .__/ \___|_|  \__,_|\__|\__,_|_|  \___|      |
+#   |                       |_|                                            |
+#   +----------------------------------------------------------------------+
+#   |                                                                      |
+#   '----------------------------------------------------------------------'
+
+
+def inventory_cisco_sb_temp(parsed):
+    for item, value in parsed.get('8', {}).iteritems():
+        if not value.get("obsolete", False):
+            yield item, {}
+
+
+def check_cisco_sb_temp(item, params, parsed):
+    temp_parsed = parsed.get('8', {})
+    if item in temp_parsed:
+        data = temp_parsed[item]
+        if data.get("obsolete", False):
+            return 3, "This sensor is obsolete, please rediscover"
+
+        state, state_readable = data['dev_state']
+        return check_temperature(
+            data['reading'],
+            params,
+            "cisco_sb_temp_%s" % item,
+            dev_levels=data['dev_levels'],
+            dev_status=state,
+            dev_status_name=state_readable)
+
+
+check_info['cisco_sb_temp'] = {
+    "parse_function"     : parse_cisco_sb_temp,
+    "inventory_function" : inventory_cisco_sb_temp,
+    "check_function"     : check_cisco_sb_temp,
+    "service_description": "Temperature %s",
+    "group"              : "temperature",
+    "has_perfdata"       : True,
+    'snmp_scan_function': \
+        lambda oid: "switch" in oid(".1.3.6.1.2.1.1.1.0").lower() \
+                    and oid(".1.3.6.1.4.1.9.6.1.101.53.14.1.10.1") is not None \
+                    and "cisco" in oid(".1.3.6.1.4.1.9.6.1.101.53.14.1.10.1").lower(),
+    "snmp_info"          : [
+        # cisco_temp_sensor data
+        ( ".1.3.6.1.2.1.47.1.1.1.1", [
+            OID_END,
+            CACHED_OID(2), # Description of the sensor
+        ]),
+
+        # Type and current state
+        ( ".1.3.6.1.4.1.9.6.1.101.83.2.1.1.1", [
+            OID_END,
+            1, # ENTITY-SENSOR-MIB::entPhySensorType
+            2, # ENTITY-SENSOR-MIB::entPhySensorScale
+            3, # ENTITY-SENSOR-MIB::entPhySensorPrecision
+            4, # ENTITY-SENSOR-MIB::entPhySensorValue
+            5, # ENTITY-SENSOR-MIB::entPhySensorOperStatus
+        ]),
+
+        # Threshold
+        ( ".1.3.6.1.4.1.9.6.1.101.83.3.1", [  # TODO check if this is correct
+            OID_END,
+            4, # Thresholds
+        ]),
+
+        # cisco_temp_perf data
+        ( ".1.3.6.1.4.1.9.9.13.1.3.1", [ # TODO Fix
+            OID_END,
+            2, # ciscoEnvMonTemperatureStatusDescr
+            3, # ciscoEnvMonTemperatureStatusValue
+            4, # ciscoEnvMonTemperatureThreshold
+            6, # ciscoEnvMonTemperatureState
+        ]),
+
+        ( ".1.3.6.1.2.1.2.2.1", [
+            CACHED_OID(2),  # Description of the sensor
+            CACHED_OID(7),  # ifAdminStatus
+        ]),
+    ],
+    "includes"          : [ "temperature.include", 'cisco_sensor_item.include' ],
+}
