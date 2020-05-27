@@ -26,7 +26,8 @@ Plugins for Check_MK either based on existing plugins, or newly written.
 
 # Cisco Small Business Switch Fan Check
 
-cisco_sb_fans is an extension to monitor fan status of Cisco Small Business switches like the SG300 series using SNMP.
+cisco_sb_fans is an extension to monitor fan status of Cisco Small Business switches like the SG300 series using SNMP, 
+which support the CISCOSB-HWENVIROMENT MIB.
 
 You must ensure OID .1.3.6.1.4.1.9.6.1.101.83 is visible by your Check_MK server(s) in the switch config (SNMP View)
 
@@ -36,7 +37,7 @@ Upload the [cisco_sb_fans-1.0.1.mkp](https://github.com/robertoschwald/check_mk_
 
 
 # Netgear Smart Manage Pro Series Switch Fan Check
-netgear_smpro_fans is an extension to monitor fan status of Netgear NG700 Smart Managed Pro NG700 Series switches like the XS716T.
+netgear_smpro_fans is an extension to monitor fan status of NetgearSmart Managed Pro NG700 Series switches like the XS716T.
 This check is based on netgear_fans, but with changed OIDs, as the NETGEAR-BOXSERVICES-PRIVATE-MIB is different to the FASTPATH-BOXSERVICES-PRIVATE-MIB.
 
 The fans are auto-detected.
@@ -47,7 +48,7 @@ Upload the [netgear_smpro_fans-1.0.0.mkp](https://github.com/robertoschwald/chec
 
 
 # Netgear Smart Manage Pro Series Switch Temperature Sensors Check
-netgear_smpro_temp is an extension to monitor fan status of Netgear NG700 Smart Managed Pro NG700 Series switches like the XS716T.
+netgear_smpro_temp is an extension to monitor fan status of Netgear Smart Managed Pro NG700 Series switches like the XS716T.
 This check is based on netgear_temp, but with changed OIDs, as the NETGEAR-BOXSERVICES-PRIVATE-MIB is different to the FASTPATH-BOXSERVICES-PRIVATE-MIB.
 
 The fans are auto-detected.
