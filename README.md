@@ -69,7 +69,7 @@ This plugin is an active plugin to be installed on Check_MK Servers based on the
 ## Installation
 1. Upload the [check_webinject-1.2.1.mkp](https://github.com/robertoschwald/check_mk_plugins/releases/download/1.2.1/check_webinject-1.2.1.mkp) extension into your Check_MK instance Extension Packages.
 2. Install your webinject config- and test files into the site-user directory etc/webinject of the appliance(s).
-   Note: You must upload the files to all Check_MK servers in a cluster / ditributed monitoring manually!
+   Note: You must upload the files to all Check_MK nodes in CheckMK Enterprise cluster / distributed monitoring manually!
 3. Create a new webinject active check rule for your host. 
     - Specify the filenames of the config- and test XML files (without path)   
     - Optionally, define username and password (since 1.2)
