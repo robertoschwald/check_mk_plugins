@@ -7,15 +7,13 @@ Plugins for Check_MK either based on existing plugins, or newly written.
 
 # Table of Contents
 - [Check_MK Plugins](#check_mk-plugins)
+- [Installation](#installation)
 - [Cisco Small Business Switch Fan Check](#cisco-small-business-switch-fan-check)
-  - [Installation](#installation)
 - [Netgear Smart Manage Pro Series Switch Fan Check](#netgear-smart-manage-pro-series-switch-fan-check)
-  - [Installation](#installation-1)
 - [Netgear Smart Manage Pro Series Switch Temperature Sensors Check](#netgear-smart-manage-pro-series-switch-temperature-sensors-check)
-  - [Installation](#installation-2)
 - [Webinject Active Check](#webinject-active-check)
   - [Enhancements](#enhancements)
-  - [Installation](#installation-3)
+  - [Installation](#installation-1)
   - [Webinject config files](#webinject-config-files)
   - [check_webinject](#check_webinject)
   - [Username and Password](#username-and-password)
@@ -24,6 +22,11 @@ Plugins for Check_MK either based on existing plugins, or newly written.
   - [Error: permission denied](#error-permission-denied)
 - [Building](#building)
 - [Contributors](#contributors)
+
+# Installation
+If not otherwise stated, you find the extension mkp files on [exchange.checkmk.com](https://exchange.checkmk.com/u/robertoschwald)
+
+To install, download the .mkp file and upload into your CheckMk Extension Packages page.
 
 # Cisco Small Business Switch Fan Check
 
@@ -34,20 +37,11 @@ You must ensure OID .1.3.6.1.4.1.9.6.1.101.83 is visible by your Check_MK server
 
 Note: 2.0.x version is ONLY compatible with CheckMK 2.0.x. Use an older version of the plugin for CheckMK 1.x version.
 
-## Installation
-Upload the [cisco_sb_fans mkp](https://exchange.checkmk.com/p/cisco-sb-fans) extension into your Check_MK instance Extension Packages.
-
-
-
 # Netgear Smart Manage Pro Series Switch Fan Check
 netgear_smpro_fans is an extension to monitor fan status of NetgearSmart Managed Pro NG700 Series switches like the XS716T.
 This check is based on netgear_fans, but with changed OIDs, as the NETGEAR-BOXSERVICES-PRIVATE-MIB is different to the FASTPATH-BOXSERVICES-PRIVATE-MIB.
 
 The fans are auto-detected.
-
-## Installation
-Upload the [netgear_smpro_fans mkp](https://exchange.checkmk.com/p/netgear-smpro-fans) extension into your Check_MK instance Extension Packages.
-
 
 
 # Netgear Smart Manage Pro Series Switch Temperature Sensors Check
@@ -55,10 +49,6 @@ netgear_smpro_temp is an extension to monitor fan status of Netgear Smart Manage
 This check is based on netgear_temp, but with changed OIDs, as the NETGEAR-BOXSERVICES-PRIVATE-MIB is different to the FASTPATH-BOXSERVICES-PRIVATE-MIB.
 
 The fans are auto-detected.
-
-## Installation
-Upload the [netgear_smpro_temp mkp](https://exchange.checkmk.com/p/netgear-smpro-temp) extension into your Check_MK instance Extension Packages.
-
 
 
 # Webinject Active Check
@@ -123,6 +113,7 @@ In this case, you must SSH login to the appliance as the site user and change th
 chmod 755 local/lib/icinga/plugins/check_webinject
 ```
 
+Note: This extension is not available on [CheckMK Exchange](https://exchange.checkmk.com)
 
 # Building
 To build an extension package, call
