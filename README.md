@@ -128,3 +128,9 @@ To build an extension package, call
 ```
 ./mkp_packer pack <plugin-dir>
 ```
+
+# Contributors
+Contributors in alphabetical order. 
+
+- Daniel Paul
+- Robert Oschwald (Project Lead)
