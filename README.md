@@ -35,7 +35,7 @@ which support the CISCOSB-HWENVIROMENT MIB.
 
 You must ensure OID .1.3.6.1.4.1.9.6.1.101.83 is visible by your Check_MK server(s) in the switch config (SNMP View)
 
-Note: 2.0.x version is ONLY compatible with CheckMK 2.0.x. Use an older version of the plugin for CheckMK 1.x version.
+Note: 2.0.x version is ONLY compatible with CheckMK 2.0.x. Use an older version of the plugin for CheckMK 1.x
 
 # Netgear Smart Manage Pro Series Switch Fan Check
 netgear_smpro_fans is an extension to monitor fan status of NetgearSmart Managed Pro NG700 Series switches like the XS716T.
