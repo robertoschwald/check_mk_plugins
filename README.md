@@ -23,6 +23,7 @@ Plugins for Check_MK either based on existing plugins, or newly written.
   - [Webinject Test File](#webinject-test-file)
   - [Error: permission denied](#error-permission-denied)
 - [Building](#building)
+- [Contributors](#contributors)
 
 # Cisco Small Business Switch Fan Check
 
