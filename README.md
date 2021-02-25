@@ -34,7 +34,7 @@ You must ensure OID .1.3.6.1.4.1.9.6.1.101.83 is visible by your Check_MK server
 Note: 2.0.x version is ONLY compatible with CheckMK 2.0.x. Use an older version of the plugin for CheckMK 1.x version.
 
 ## Installation
-Upload the [cisco_sb_fans-1.0.1.mkp](https://github.com/robertoschwald/check_mk_plugins/releases/download/sb_fan_1.0.1/cisco_sb_fans-1.0.1.mkp) extension into your Check_MK instance Extension Packages.
+Upload the [cisco_sb_fans mkp](https://exchange.checkmk.com/p/cisco-sb-fans) extension into your Check_MK instance Extension Packages.
 
 
 
@@ -45,7 +45,7 @@ This check is based on netgear_fans, but with changed OIDs, as the NETGEAR-BOXSE
 The fans are auto-detected.
 
 ## Installation
-Upload the [netgear_smpro_fans-1.0.0.mkp](https://github.com/robertoschwald/check_mk_plugins/releases/download/smpro_fans_1.0.0/netgear_smpro_fans-1.0.0.mkp) extension into your Check_MK instance Extension Packages.
+Upload the [netgear_smpro_fans mkp](https://exchange.checkmk.com/p/netgear-smpro-fans) extension into your Check_MK instance Extension Packages.
 
 
 
@@ -56,7 +56,7 @@ This check is based on netgear_temp, but with changed OIDs, as the NETGEAR-BOXSE
 The fans are auto-detected.
 
 ## Installation
-Upload the [netgear_smpro_temp-1.0.0.mkp](https://github.com/robertoschwald/check_mk_plugins/releases/download/smpro_temp_1.0.0/netgear_smpro_temp-1.0.0.mkp) extension into your Check_MK instance Extension Packages.
+Upload the [netgear_smpro_temp mkp](https://exchange.checkmk.com/p/netgear-smpro-temp) extension into your Check_MK instance Extension Packages.
 
 
 
