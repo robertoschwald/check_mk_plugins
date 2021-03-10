@@ -71,7 +71,7 @@ This plugin is an active plugin to be installed on Check_MK Servers based on the
 Do not specify a logfile location in the webinject config file!
 
 ## check_webinject
-This file is based on webinject 1.94 currently. Has workaround for missing Errors.pm library.
+This file is based on webinject 1.94 currently. It contains a workaround for the missing Errors.pm library in the CheckMK Docker 1.6.x images.
 
 ## Username and Password
 If you need username and password in your test, you can configure them in the active check rule.
