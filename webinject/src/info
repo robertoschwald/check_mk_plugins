@@ -1,5 +1,5 @@
 {'author': u'Robert Oschwald <robertoschwald@gmail.com>',
- 'description': u'Active Webinject Checks running on a Check_MK Server.\nThis extensions also installes check_webinject 1.94.\n\nYou must upload your Webinject Config- and Test-Files into your instances etc/webinject directory and configure a active check rule for webinject.\n',
+ 'description': u'Active Webinject Checks running on a Check_MK Server.\nThis extensions also installs check_webinject 1.94.\n\nYou must upload your Webinject Config- and Test-Files into your instances etc/webinject directory and configure an active check rule for webinject.\n',
  'download_url': 'https://github.com/robertoschwald/check_mk_plugins/blob/master/webinject',
  'files': {'checkman': ['webinject.status'],
            'checks': ['check_webinject'],
