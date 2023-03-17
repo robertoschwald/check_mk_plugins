@@ -11,14 +11,14 @@
 # and CISCOSB-Physicaldescription-MIB::rlPhdUnitGenParamManufacturer.1 for "cisco",
 # as this MIB is available on SB Switches (like SG300 Series), only.
 # The fans itself are on the following OIDs:
-# .1.3.6.1.4.1.9.6.1.101.83.1.1.1.2.67109249 = STRING: fan1_unit1
-# .1.3.6.1.4.1.9.6.1.101.83.1.1.1.2.67109250 = STRING: fan2_unit1
-# .1.3.6.1.4.1.9.6.1.101.83.1.1.1.2.67109251 = STRING: fan3_unit1
-# .1.3.6.1.4.1.9.6.1.101.83.1.1.1.2.67109252 = STRING: fan4_unit1
-# .1.3.6.1.4.1.9.6.1.101.83.1.1.1.3.67109249 = INTEGER: normal(1)
-# .1.3.6.1.4.1.9.6.1.101.83.1.1.1.3.67109250 = INTEGER: notFunctioning(6)
-# .1.3.6.1.4.1.9.6.1.101.83.1.1.1.3.67109251 = INTEGER: normal(1)
-# .1.3.6.1.4.1.9.6.1.101.83.1.1.1.3.67109252 = INTEGER: notPresent(5)
+# rlEnvMonFanStatusDescr.67109249  : .1.3.6.1.4.1.9.6.1.101.83.1.1.1.2.67109249 = STRING: fan1_unit1
+# rlEnvMonFanStatusDescr.67109250  : .1.3.6.1.4.1.9.6.1.101.83.1.1.1.2.67109250 = STRING: fan2_unit1
+# rlEnvMonFanStatusDescr.67109251  : .1.3.6.1.4.1.9.6.1.101.83.1.1.1.2.67109251 = STRING: fan3_unit1
+# rlEnvMonFanStatusDescr.67109252  : .1.3.6.1.4.1.9.6.1.101.83.1.1.1.2.67109252 = STRING: fan4_unit1
+# rlEnvMonFanState.67109249        : .1.3.6.1.4.1.9.6.1.101.83.1.1.1.3.67109249 = INTEGER: normal(1)
+# rlEnvMonFanState.67109250        : .1.3.6.1.4.1.9.6.1.101.83.1.1.1.3.67109250 = INTEGER: notFunctioning(6)
+# rlEnvMonFanState.67109251        : .1.3.6.1.4.1.9.6.1.101.83.1.1.1.3.67109251 = INTEGER: normal(1)
+# rlEnvMonFanState.67109252        : .1.3.6.1.4.1.9.6.1.101.83.1.1.1.3.67109252 = INTEGER: notPresent(5)
 #
 # This is free software;  you can redistribute it and/or modify it
 # under the  terms of the  GNU General Public License  as published by

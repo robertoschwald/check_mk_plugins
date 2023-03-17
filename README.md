@@ -2,6 +2,9 @@
 
 Plugins for Check_MK either based on existing plugins, or newly written.
 
+- 2.x plugin versions are for CheckMK 2.0/2.1
+- 1.x plugin versions are for CheckMK 1.x
+
 
 [TOC levels=1-5]: #
 
@@ -122,7 +125,7 @@ To build an extension package, call
 ```
 
 # Contributors
-Contributors in alphabetical order. 
+Contributors in alphabetical order.
 
 - Daniel Paul
 - Robert Oschwald (Project Lead)

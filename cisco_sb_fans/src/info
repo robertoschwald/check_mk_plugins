@@ -8,4 +8,4 @@
  'title': u'Check FAN health status on Cisco SB switches',
  'version': '2.0.0',
  'version.min_required': '2.0.0',
- 'version.packaged': '2.0.0b7'}
+ 'version.packaged': '2.0.0b24'}

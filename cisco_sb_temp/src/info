@@ -1,0 +1,11 @@
+{'author': u'Robert Oschwald <robertoschwald@gmail.com>',
+ 'description': u'This check monitors the temperature on Cisco SB switches.',
+ 'download_url': 'https://github.com/robertoschwald/check_mk_plugins/blob/master/cisco_sb_temp',
+ 'files': {'checkman': ['cisco_sb_temp'],
+           'checks': ['cisco_sb_temp']},
+ 'name': 'cisco_sb_temp',
+ 'num_files': 2,
+ 'title': u'Check temperature health status on Cisco SB switches',
+ 'version': '2.0.0',
+ 'version.min_required': '2.0.0',
+ 'version.packaged': '2.0.0p24'}
