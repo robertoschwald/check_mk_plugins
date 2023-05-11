@@ -1,11 +1,10 @@
-{'author': u'Robert Oschwald <robertoschwald@gmail.com>',
+{'author': 'Robert Oschwald <robertoschwald@gmail.com>',
  'description': u'This check monitors the state of fans on Cisco SB switches.',
  'download_url': 'https://github.com/robertoschwald/check_mk_plugins/blob/master/cisco_sb_fans',
  'files': {'checkman': ['cisco_sb_fan'],
            'checks': ['cisco_sb_fan']},
  'name': 'cisco_sb_fans',
- 'num_files': 2,
  'title': u'Check FAN health status on Cisco SB switches',
- 'version': '2.0.0',
+ 'version': '2.0.1',
  'version.min_required': '2.0.0',
- 'version.packaged': '2.0.0b24'}
+ 'version.packaged': '2.0.0p20'}
