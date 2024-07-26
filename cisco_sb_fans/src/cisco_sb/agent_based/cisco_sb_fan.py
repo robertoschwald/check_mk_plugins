@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- encoding: utf-8; py-indent-offset: 4 -*-
 # (c) Robert Oschwald 2019             
-# 2024 refactored to use .agent_based_api.v1 by Daniel Paul
+# 2024 refactored to use .agent_based_api.v2 by Daniel Paul
 
 # Check for Cisco Small Business Switch FANs.
 #
@@ -32,8 +32,6 @@
 # to the Free Software Foundation, Inc., 51 Franklin St,  Fifth Floor,
 # Boston, MA 02110-1301 USA.
 
-
-#from .agent_based_api.v1 import register, Result, Service, matches, all_of, exists, SNMPTree, State
 from cmk.agent_based.v2 import Result, Service, matches, all_of, exists, SNMPTree, State
 from cmk.agent_based.v2 import SNMPSection, SimpleSNMPSection, CheckPlugin
 
