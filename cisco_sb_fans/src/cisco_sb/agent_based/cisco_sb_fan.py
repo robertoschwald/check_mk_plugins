@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- encoding: utf-8; py-indent-offset: 4 -*-
 # (c) Robert Oschwald 2019             
-
+# 2024 refactored to use .agent_based_api.v2 by Daniel Paul
 
 # Check for Cisco Small Business Switch FANs.
 #
@@ -32,8 +32,8 @@
 # to the Free Software Foundation, Inc., 51 Franklin St,  Fifth Floor,
 # Boston, MA 02110-1301 USA.
 
-
-from .agent_based_api.v1 import register, Result, Service, matches, all_of, exists, SNMPTree, State
+from cmk.agent_based.v2 import Result, Service, matches, all_of, exists, SNMPTree, State
+from cmk.agent_based.v2 import SNMPSection, SimpleSNMPSection, CheckPlugin
 
 def parse_cisco_sb_fans(string_table):
     return string_table
@@ -66,7 +66,7 @@ def check_cisco_sb_fans(item, section):
             )
             yield Result(state=fan_state, summary=f"Status: {fan_state_readable}")
 
-register.snmp_section(
+snmp_section_cisco_sb_fan = SimpleSNMPSection(
     name = "cisco_sb_fans",
     parse_function = parse_cisco_sb_fans,
     detect = all_of(
@@ -83,7 +83,7 @@ register.snmp_section(
     ),
 )
 
-register.check_plugin(
+check_plugin_cisco_sb_fan = CheckPlugin(
     name = "cisco_sb_fan",
     sections = ["cisco_sb_fans"],
     service_name = "Fan %s",
